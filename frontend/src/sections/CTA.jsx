@@ -46,13 +46,13 @@ export default function CTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#signup"
+                href="/register"
                 className="gold-btn flex items-center gap-2 px-8 py-4 rounded-2xl text-base w-full sm:w-auto justify-center"
               >
                 {t("create_free_account")} <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href="#signin"
+                href="/login"
                 className="flex items-center gap-2 px-8 py-4 rounded-2xl border border-white/20 text-white hover:border-yellow-500/40 hover:bg-yellow-500/5 transition-all text-base font-medium w-full sm:w-auto justify-center"
               >
                 <LogIn className="w-5 h-5" /> {t("sign_in")}
