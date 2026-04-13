@@ -7,6 +7,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import api from "../services/apiService";
 
 export default function LiveNews() {
   const { t } = useTranslation();
