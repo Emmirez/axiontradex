@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-
 export default function LiveNews() {
   const { t } = useTranslation();
   const [news, setNews] = useState([]);
@@ -21,16 +20,7 @@ export default function LiveNews() {
     setError(null);
 
     try {
-      // Fetch crypto news from NewsAPI
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/news/crypto`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
+      const { data } = await api.get("/news/crypto"); 
 
       if (data.articles && data.articles.length > 0) {
         const formattedNews = data.articles.map((article) => ({
@@ -54,7 +44,6 @@ export default function LiveNews() {
     } catch (err) {
       console.error("News fetch error:", err);
       setError("Unable to fetch live news");
-      // Use fallback data
       setNews(getFallbackNews());
     } finally {
       setLoading(false);
