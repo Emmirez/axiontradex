@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables */
+:root {
+  --gold: #f59e0b;
+  --gold-dark: #d97706;
+  --gold-deeper: #b45309;
+  --bg: #020617;
+  --surface: rgba(15, 23, 42, 0.85);
+  --border: rgba(245, 158, 11, 0.14);
+  --text-muted: #94a3b8;
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: #f1f5f9;
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
+}
+
+/*  Scrollbar  */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 3px;
+}
+
+/* Utility classes */
+.gold-text {
+  background: linear-gradient(135deg, #fbbf24, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-btn {
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark),
+    var(--gold),
+    var(--gold-deeper)
+  );
+  color: #020617;
+  font-weight: 700;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.gold-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.gold-btn:hover::after {
+  transform: translateX(100%);
+}
+.gold-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(245, 158, 11, 0.42);
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+.card:hover {
+  border-color: rgba(245, 158, 11, 0.36);
+  box-shadow: 0 6px 36px rgba(245, 158, 11, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Ticker  */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 45s linear infinite;
+}
+.ticker-inner:hover {
+  animation-play-state: paused;
+}
+
+/*  Grid overlay */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/*  Nav link  */
+.nav-link {
+  position: relative;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.nav-link:hover {
+  color: var(--gold);
+  background: rgba(245, 158, 11, 0.07);
+}
+
+/*  Fade-in on scroll */
+.fade-section {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+}
+.fade-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Chart line animation*/
+.chart-line {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawLine 2.5s ease forwards 0.4s;
+}
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Light mode — page background */
+html:not(.dark) body {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+html:not(.dark) .glass {
+  background: rgba(248, 250, 252, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html:not(.dark) .nav-link {
+  color: #334155;
+}
+html:not(.dark) .nav-link:hover {
+  color: #f59e0b;
+}
+
+/* Light bg sections — cards get white surface */
+html:not(.dark) :not([data-theme="dark"]) .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.image-text {
+  color: #ffffff !important;
+}
+
+/* Light bg sections — override white text to dark */
+html:not(.dark) :not([data-theme="dark"]) .text-white:not(.image-text) {
+  color: #0f172a !important;
+}
+html:not(.dark) :not([data-theme="dark"]) .text-slate-300:not(.image-text) {
+  color: #475569 !important;
+}
+html:not(.dark) :not([data-theme="dark"]) .text-slate-400:not(.image-text) {
+  color: #64748b !important;
+}
+html:not(.dark) :not([data-theme="dark"]) .text-slate-500:not(.image-text) {
+  color: #94a3b8 !important;
+}
+
+/* Dark bg sections — keep text light always */
+[data-theme="dark"] .text-white {
+  color: #f1f5f9 !important;
+}
+[data-theme="dark"] .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+[data-theme="dark"] .text-slate-400 {
+  color: #94a3b8 !important;
+}
+[data-theme="dark"] .text-slate-500 {
+  color: #64748b !important;
+}
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #f1f5f9;
+}
+
+/* Section backgrounds */
+.section-dark {
+  background: radial-gradient(ellipse at 50% 0%, #1a0e00 0%, #020617 55%);
+}
+.section-darker {
+  background: linear-gradient(
+    180deg,
+    #020617 0%,
+    rgba(15, 23, 42, 0.4) 50%,
+    #020617 100%
+  );
+}
+.section-darkest {
+  background: linear-gradient(180deg, #020617, rgba(10, 12, 20, 0.8), #020617);
+}
+.section-base {
+  background: #020617;
+}
+
+/* Light mode — all section backgrounds go light */
+html:not(.dark) .section-dark,
+html:not(.dark) .section-darker,
+html:not(.dark) .section-darkest,
+html:not(.dark) .section-base {
+  background: #f1f5f9;
+}
+
+/* Light mode — cards on light sections */
+html:not(.dark) .section-dark .card,
+html:not(.dark) .section-darker .card,
+html:not(.dark) .section-darkest .card,
+html:not(.dark) .section-base .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Light mode — text on light sections */
+html:not(.dark) .section-dark .text-white:not(.image-text),
+html:not(.dark) .section-darker .text-white:not(.image-text),
+html:not(.dark) .section-darkest .text-white:not(.image-text),
+html:not(.dark) .section-base .text-white:not(.image-text),
+html:not(.dark) .section-dark h2:not(.image-text),
+html:not(.dark) .section-darker h2:not(.image-text),
+html:not(.dark) .section-darkest h2:not(.image-text),
+html:not(.dark) .section-base h2:not(.image-text),
+html:not(.dark) .section-dark h3:not(.image-text),
+html:not(.dark) .section-darker h3:not(.image-text),
+html:not(.dark) .section-darkest h3:not(.image-text),
+html:not(.dark) .section-base h3:not(.image-text),
+html:not(.dark) .section-dark h4:not(.image-text),
+html:not(.dark) .section-darker h4:not(.image-text),
+html:not(.dark) .section-darkest h4:not(.image-text),
+html:not(.dark) .section-base h4:not(.image-text) {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .section-dark .text-slate-300:not(.image-text),
+html:not(.dark) .section-darker .text-slate-300:not(.image-text),
+html:not(.dark) .section-darkest .text-slate-300:not(.image-text),
+html:not(.dark) .section-base .text-slate-300:not(.image-text) {
+  color: #475569 !important;
+}
+
+html:not(.dark) .section-dark .text-slate-400:not(.image-text),
+html:not(.dark) .section-darker .text-slate-400:not(.image-text),
+html:not(.dark) .section-darkest .text-slate-400:not(.image-text),
+html:not(.dark) .section-base .text-slate-400:not(.image-text) {
+  color: #64748b !important;
+}
+
+html:not(.dark) .section-dark .text-slate-500:not(.image-text),
+html:not(.dark) .section-darker .text-slate-500:not(.image-text),
+html:not(.dark) .section-darkest .text-slate-500:not(.image-text),
+html:not(.dark) .section-base .text-slate-500:not(.image-text) {
+  color: #94a3b8 !important;
+}
+/* Terminal mobile panel */
+.terminal-panel {
+  background: rgba(15, 23, 42, 0.95);
+}
+html:not(.dark) .terminal-panel {
+  background: rgba(255, 255, 255, 0.95);
+}
+html:not(.dark) .terminal-panel .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) .terminal-panel .text-slate-400 {
+  color: #64748b !important;
+}
+
+/*  Ticker */
+.ticker-bg {
+  background: #020617;
+}
+.ticker-fade-left {
+  background: linear-gradient(90deg, #020617, transparent);
+}
+.ticker-fade-right {
+  background: linear-gradient(-90deg, #020617, transparent);
+}
+
+html:not(.dark) .ticker-bg {
+  background: #f1f5f9;
+}
+html:not(.dark) .ticker-fade-left {
+  background: linear-gradient(90deg, #f1f5f9, transparent);
+}
+html:not(.dark) .ticker-fade-right {
+  background: linear-gradient(-90deg, #f1f5f9, transparent);
+}
+
+/*  Footer light mode fix */
+html:not(.dark) footer,
+html:not(.dark) footer .text-white,
+html:not(.dark) footer h4,
+html:not(.dark) footer span,
+html:not(.dark) footer p {
+  color: #f1f5f9 !important;
+}
+
+html:not(.dark) footer .text-slate-500,
+html:not(.dark) footer .text-slate-600,
+html:not(.dark) footer .text-slate-700 {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) footer a {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) footer a:hover {
+  color: #f59e0b !important;
+}
