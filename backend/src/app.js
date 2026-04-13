@@ -97,6 +97,7 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+app.use("/api/news", newsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
@@ -115,7 +116,7 @@ app.use("/api/demo-trading", demoTradingRoutes);
 app.use("/api/bots", botRoutes);
 app.use("/api/swap", swapRoutes);
 app.use("/api/gold", goldRoutes);
-app.use("/api/news", newsRoutes);
+
 
 app.use(notFound);
 app.use(errorHandler);
