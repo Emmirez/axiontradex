@@ -613,6 +613,7 @@
   "buy_order_executed": "↑ Buy Order Executed",
   "sell_order_executed": "↓ Sell Order Executed",
   "processing": "Processing...",
+  
 
   "_comment1": "Stock Page",
   "stocks_tab": "Stocks",
@@ -764,7 +765,7 @@
   "earn_together": "Earn Together",
   "earn_together_desc": "Sit back and earn. You can stop, pause or adjust your copy settings any time.",
   "get_started_under_2_min": "Get started in under 2 minutes",
-  "why_axiontrade_copy_trading": "Why AxionTrade Copy Trading?",
+  "why_axiontrade_copy_trading": "Why AxionTradeX Copy Trading?",
   "full_transparency": "Full Transparency",
   "full_transparency_desc": "See every trade, win rate, drawdown and history before you copy anyone.",
   "risk_management_copy": "Risk Management",
@@ -2322,6 +2323,10 @@
   "ios_step_3": "Select <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Add to Home Screen\"</span> then tap <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Add\"</span>",
   "got_it": "Got it",
   "install_address_bar": "To install: look for the install icon in your browser's address bar, or use Chrome/Edge.",
+
+  "bitcoin_network":"bitcoin",
+  "bitcoin_gold":"gold",
+  "trading_charts":"charts",
 
   "passwords_match": "✓ Passwords match",
   "passwords_do_not_match_indicator": "✗ Passwords do not match"

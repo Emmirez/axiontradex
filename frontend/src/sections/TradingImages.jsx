@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import gold from "../assets/gold.jpg";
 import crypto from "../assets/crypto.jpg";
 import { useTranslation } from "react-i18next";
-import exchange from "../assets/exchange.jpg";
+import bitcoin from "../assets/bitcoin.jpg";
+
 
 export default function TradingImages() {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ export default function TradingImages() {
       label: t("trading_charts"),
     },
     {
-      url: exchange,
+      url: bitcoin,
       label: t("bitcoin_network"),
     },
   ];
