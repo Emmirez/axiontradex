@@ -23,6 +23,7 @@ import demoTradingRoutes from "./routes/demoTradingRoutes.js";
 import botRoutes from "./routes/botRoutes.js";
 import swapRoutes from "./routes/swapRoutes.js";
 import goldRoutes from "./routes/goldRoutes.js";
+import newsRoutes from "./routes/newsRoutes.js";
 
 const app = express();
 
@@ -114,6 +115,7 @@ app.use("/api/demo-trading", demoTradingRoutes);
 app.use("/api/bots", botRoutes);
 app.use("/api/swap", swapRoutes);
 app.use("/api/gold", goldRoutes);
+app.use("/api/news", newsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
