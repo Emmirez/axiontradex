@@ -18,12 +18,12 @@ import {
   FeatureCard,
   CTABanner,
 } from "../pages/features/FeatureLayout";
-import cami from "../assets/cami.jpg";
-import raul from "../assets/raul.jpg";
-import wood from "../assets/wood.jpg";
-import festus from "../assets/festus.jpg";
-import loveth from "../assets/loveth.jpg";
-import ruth from "../assets/ruth.jpg";
+import cami from "../assets/Cami.jpg";
+import raul from "../assets/Raul.jpg";
+import wood from "../assets/Wood.jpg";
+import festus from "../assets/Festus.jpg";
+import loveth from "../assets/Loveth.jpg";
+import ruth from "../assets/Ruth.jpg";
 
 export default function AboutUs() {
   const { t } = useTranslation();
