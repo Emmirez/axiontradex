@@ -4,9 +4,7 @@ import james from "../assets/James.jpg";
 import Laureen from "../assets/Laureen.jpg";
 import Kath from "../assets/Kath.jpg";
 import Queen from "../assets/Queen.jpg";
-import Renee from "../assets/renee.jpg";
 import Ruddy from "../assets/Ruddy.jpg";
-import Zoey from "../assets/zoey.jpg";
 import Timo from "../assets/Timo.jpg";
 import { useTranslation } from "react-i18next";
 

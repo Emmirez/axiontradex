@@ -21,7 +21,7 @@ import copyTradingRoutes from "./routes/copyTradingRoutes.js";
 import signalRoutes from "./routes/signalRoutes.js";
 import demoTradingRoutes from "./routes/demoTradingRoutes.js";
 import botRoutes from "./routes/botRoutes.js";
-import swapRoutes from './routes/swapRoutes.js'
+import swapRoutes from "./routes/swapRoutes.js";
 import goldRoutes from "./routes/goldRoutes.js";
 
 const app = express();
@@ -46,7 +46,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: [
+      "https://axiontradex.com",
+      "https://www.axiontradex.com",
+      "http://localhost:5173",
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -108,7 +112,7 @@ app.use("/api/copy-trading", copyTradingRoutes);
 app.use("/api/signals", signalRoutes);
 app.use("/api/demo-trading", demoTradingRoutes);
 app.use("/api/bots", botRoutes);
-app.use('/api/swap', swapRoutes)
+app.use("/api/swap", swapRoutes);
 app.use("/api/gold", goldRoutes);
 
 app.use(notFound);
