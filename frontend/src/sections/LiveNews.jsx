@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { ExternalLink, Calendar, Loader2, Newspaper, AlertCircle } from "lucide-react";
-import { useTranslation } from 'react-i18next';
+import {
+  ExternalLink,
+  Calendar,
+  Loader2,
+  Newspaper,
+  AlertCircle,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-// Get your free API key from https://newsapi.org/register
-const NEWS_API_KEY = "c934bbeb487549aba7754b0590d6f1cc"; // Replace with your key
 
 export default function LiveNews() {
   const { t } = useTranslation();
@@ -15,30 +19,33 @@ export default function LiveNews() {
   const fetchNews = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // Fetch crypto news from NewsAPI
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=cryptocurrency OR bitcoin OR ethereum OR blockchain&language=en&sortBy=publishedAt&pageSize=12&apiKey=${NEWS_API_KEY}`
+        `${import.meta.env.VITE_API_URL}/news/crypto`,
       );
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       if (data.articles && data.articles.length > 0) {
-        const formattedNews = data.articles.map(article => ({
+        const formattedNews = data.articles.map((article) => ({
           title: article.title,
           link: article.url,
           pubDate: article.publishedAt,
-          description: article.description || article.content?.slice(0, 150) || "Read more about this crypto news update...",
+          description:
+            article.description ||
+            article.content?.slice(0, 150) ||
+            "Read more about this crypto news update...",
           creator: article.author || "Crypto News",
           source: article.source.name,
-          image: article.urlToImage
+          image: article.urlToImage,
         }));
-        
+
         setNews(formattedNews);
         setLastUpdated(new Date());
       } else {
@@ -62,7 +69,7 @@ export default function LiveNews() {
         pubDate: new Date().toISOString(),
         description: t("fallback_news_1_desc"),
         creator: t("market_analyst"),
-        source: t("crypto_news")
+        source: t("crypto_news"),
       },
       {
         title: t("fallback_news_2_title"),
@@ -70,7 +77,7 @@ export default function LiveNews() {
         pubDate: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
         description: t("fallback_news_2_desc"),
         creator: t("tech_reporter"),
-        source: t("crypto_news")
+        source: t("crypto_news"),
       },
       {
         title: t("fallback_news_3_title"),
@@ -78,7 +85,7 @@ export default function LiveNews() {
         pubDate: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
         description: t("fallback_news_3_desc"),
         creator: t("regulatory_desk"),
-        source: t("crypto_news")
+        source: t("crypto_news"),
       },
       {
         title: t("fallback_news_4_title"),
@@ -86,7 +93,7 @@ export default function LiveNews() {
         pubDate: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
         description: t("fallback_news_4_desc"),
         creator: t("defi_analyst"),
-        source: t("crypto_news")
+        source: t("crypto_news"),
       },
       {
         title: t("fallback_news_5_title"),
@@ -94,7 +101,7 @@ export default function LiveNews() {
         pubDate: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
         description: t("fallback_news_5_desc"),
         creator: t("nft_reporter"),
-        source: t("crypto_news")
+        source: t("crypto_news"),
       },
       {
         title: t("fallback_news_6_title"),
@@ -102,17 +109,17 @@ export default function LiveNews() {
         pubDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
         description: t("fallback_news_6_desc"),
         creator: t("business_desk"),
-        source: t("crypto_news")
-      }
+        source: t("crypto_news"),
+      },
     ];
   };
 
   useEffect(() => {
     fetchNews();
-    
+
     // Refresh every 5 minutes
     const interval = setInterval(fetchNews, 5 * 60 * 1000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -123,11 +130,12 @@ export default function LiveNews() {
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMs / 3600000);
     const diffDays = Math.floor(diffMs / 86400000);
-    
+
     if (diffMins < 1) return "Just now";
     if (diffMins < 60) return `${diffMins} min ago`;
-    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+    if (diffHours < 24)
+      return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+    return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
   };
 
   return (
@@ -160,17 +168,21 @@ export default function LiveNews() {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-10 h-10 text-yellow-500 animate-spin mb-4" />
-            <p className="text-gray-500 dark:text-gray-400">Fetching latest news...</p>
+            <p className="text-gray-500 dark:text-gray-400">
+              Fetching latest news...
+            </p>
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center py-20">
             <AlertCircle className="w-10 h-10 text-yellow-500 mb-4" />
-            <p className="text-gray-500 dark:text-gray-400 text-center mb-4">{error}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-center mb-4">
+              {error}
+            </p>
             <button
               onClick={fetchNews}
               className="gold-btn px-6 py-2 rounded-lg text-sm font-medium"
             >
-                {t("retry")}
+              {t("retry")}
             </button>
             <p className="text-xs text-gray-400 mt-4">
               {t("showing_highlights")}
@@ -194,17 +206,17 @@ export default function LiveNews() {
                     </span>
                   </div>
                 )}
-                
+
                 {/* Title */}
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-yellow-500 transition-colors">
                   {item.title}
                 </h3>
-                
+
                 {/* Description */}
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-3">
                   {item.description}
                 </p>
-                
+
                 {/* Footer */}
                 <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
                   <div className="flex items-center gap-1">
