@@ -715,7 +715,6 @@ export default function Register() {
   const bulletClr = darkMode ? "#94a3b8" : "#64748b";
   const stepLabelClr = darkMode ? "#334155" : "#94a3b8";
 
- 
   // Success screen
   if (done)
     return (
@@ -736,6 +735,7 @@ export default function Register() {
             alignItems: "center",
             justifyContent: "center",
             padding: 24,
+            paddingTop: 80,
           }}
         >
           <div style={{ textAlign: "center", maxWidth: 440 }}>

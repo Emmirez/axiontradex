@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent iOS horizontal scroll bounce */
+html, body {
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Prevent iOS text input zoom */
+input, select, textarea {
+  font-size: 16px !important; /* iOS zooms in if font-size < 16px */
+}
+
 /* CSS Variables */
 :root {
   --gold: #f59e0b;
