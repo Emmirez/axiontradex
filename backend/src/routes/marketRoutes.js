@@ -2,6 +2,7 @@ import express from "express";
 import NodeCache from "node-cache";
 import * as marketController from "../controllers/marketController.js";
 import { refreshRateCache, getLiveRates } from "../utils/rateCache.js";
+import { MARKET_DATA } from "../controllers/marketController.js";
 
 const router = express.Router();
 
@@ -188,20 +189,51 @@ export function startMarketPolling() {
   // Refresh every 60s — reduces CoinGecko 429s
   setInterval(refreshRateCache, 60_000);
   setInterval(refreshPrices,    60_000);
-  setInterval(refreshMovers,    120_000); // movers every 2min — less critical
+  setInterval(refreshMovers,    120_000); 
 }
 
 // Routes..serve from cache only, always instant 
 
 router.get("/prices", (req, res) => {
   const data = priceCache.get("prices") || lastGoodPrices;
-  if (!data) return res.status(503).json({ error: "Price data not yet available, please retry shortly" });
+  
+  if (!data) {
+    //  Fall back to static MARKET_DATA on cold boot
+    const fallback = {};
+    Object.entries(MARKET_DATA).forEach(([symbol, d]) => {
+      const cgId = Object.keys(COIN_MAP).find(
+        (id) => COIN_MAP[id].symbol === symbol.replace("/USDT", "").replace("/USD", "")
+      );
+      if (cgId) fallback[cgId] = { usd: d.price, usd_24h_change: d.change24h };
+    });
+    return res.json({ data: fallback, cached: false, stale: true });
+  }
+
   res.json({ data, cached: true });
 });
 
 router.get("/movers", (req, res) => {
   const data = moversCache.get("movers") || lastGoodMovers;
-  if (!data) return res.status(503).json({ error: "Movers data not yet available, please retry shortly" });
+
+  if (!data) {
+    //  Fall back to static MARKET_DATA on cold boot
+    const fallback = Object.entries(MOVER_MAP).map(([cgId, meta]) => {
+      const staticData = MARKET_DATA[`${meta.symbol}/USDT`] || 
+                         MARKET_DATA[`${meta.symbol}/USD`];
+      return {
+        id: cgId,
+        symbol: meta.symbol,
+        name: meta.name,
+        image: meta.image,
+        price: staticData?.price || 0,
+        change24h: staticData?.change24h || 0,
+        volume: staticData?.volume || 0,
+      };
+    }).filter((m) => m.price > 0);
+
+    return res.json({ data: fallback, cached: false, stale: true });
+  }
+
   res.json({ data, cached: true });
 });
 
