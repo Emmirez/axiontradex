@@ -2320,6 +2320,17 @@
   "got_it": "Entendi",
   "install_address_bar": "Para instalar: procure o ícone de instalação na barra de endereços do seu navegador ou use Chrome/Edge.",
 
+  "bitcoin_network": "bitcoin",
+  "bitcoin_gold": "ouro",
+  "trading_charts": "gráficos",
+  "verification_sent_to": "Enviamos um link de verificação para",
+  "verification_instructions": "Clique no link no e-mail para verificar sua conta. O link expira em 24 horas. Você deve verificar seu e-mail antes de poder fazer login.",
+  "verify_step_1": "Abra o e-mail da AxionTrade",
+  "verify_step_2": "Clique no botão 'Verificar meu endereço de e-mail'",
+  "verify_step_3": "Volte aqui e faça login para começar a negociar",
+  "check_spam_folder": "Não encontra o e-mail? Verifique sua pasta de spam ou lixo eletrônico.",
+  "go_to_sign_in": "Ir para o Login",
+
   "passwords_match": "✓ As senhas coincidem",
   "passwords_do_not_match_indicator": "✗ As senhas não coincidem"
 }

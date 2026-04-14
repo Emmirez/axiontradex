@@ -165,7 +165,7 @@ export default function Login() {
             >
               {t("welcome_back_to")}
               <br />
-              <span className="gold-text">AxionTrade.</span>
+              <span className="gold-text">AxionTradeX.</span>
             </h2>
             <p
               style={{

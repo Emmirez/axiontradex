@@ -715,7 +715,7 @@ export default function Register() {
   const bulletClr = darkMode ? "#94a3b8" : "#64748b";
   const stepLabelClr = darkMode ? "#334155" : "#94a3b8";
 
-  // Success screen
+ 
   // Success screen
   if (done)
     return (

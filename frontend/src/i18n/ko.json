@@ -2320,6 +2320,17 @@
   "got_it": "알겠습니다",
   "install_address_bar": "설치하려면: 브라우저 주소 표시줄에서 설치 아이콘을 찾거나 Chrome/Edge를 사용하세요.",
 
+  "bitcoin_network": "비트코인",
+  "bitcoin_gold": "골드",
+  "trading_charts": "차트",
+  "verification_sent_to": "인증 링크를 다음 주소로 보냈습니다",
+  "verification_instructions": "이메일의 링크를 클릭하여 계정을 인증하세요. 링크는 24시간 후에 만료됩니다. 로그인하려면 먼저 이메일을 인증해야 합니다.",
+  "verify_step_1": "AxionTrade에서 보낸 이메일 열기",
+  "verify_step_2": "'내 이메일 주소 인증' 버튼 클릭",
+  "verify_step_3": "여기로 돌아와 로그인하여 거래 시작",
+  "check_spam_folder": "이메일을 찾을 수 없나요? 스팸 또는 정크 폴더를 확인하세요.",
+  "go_to_sign_in": "로그인하러 가기",
+
   "passwords_match": "✓ 비밀번호 일치",
   "passwords_do_not_match_indicator": "✗ 비밀번호 불일치"
 }

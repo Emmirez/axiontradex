@@ -2320,6 +2320,17 @@
   "got_it": "Verstaan",
   "install_address_bar": "Om te installeer: soek die installasie-ikoon in jou blaaier se adresbalk, of gebruik Chrome/Edge.",
 
+  "bitcoin_network": "bitcoin",
+  "bitcoin_gold": "goud",
+  "trading_charts": "grafieke",
+  "verification_sent_to": "Ons het 'n verifikasieskakel gestuur na",
+  "verification_instructions": "Klik op die skakel in die e-pos om jou rekening te verifieer. Die skakel verval oor 24 uur. Jy moet jou e-pos verifieer voordat jy kan aanmeld.",
+  "verify_step_1": "Maak die e-pos van AxionTrade oop",
+  "verify_step_2": "Klik op die 'Verifieer My E-posadres' knoppie",
+  "verify_step_3": "Keer hier terug en meld aan om te begin handel dryf",
+  "check_spam_folder": "Kan jy nie die e-pos vind nie? Gaan jou spam- of rommelmap na.",
+  "go_to_sign_in": "Gaan na Teken In",
+
   "passwords_match": "✓ Wagwoorde stem ooreen",
   "passwords_do_not_match_indicator": "✗ Wagwoorde stem nie ooreen nie"
 }

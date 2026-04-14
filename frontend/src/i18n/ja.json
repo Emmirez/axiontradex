@@ -2321,6 +2321,17 @@
   "got_it": "了解",
   "install_address_bar": "インストールするには：ブラウザのアドレスバーにあるインストールアイコンを探すか、Chrome/Edgeを使用してください。",
 
+  "bitcoin_network": "ビットコイン",
+  "bitcoin_gold": "ゴールド",
+  "trading_charts": "チャート",
+  "verification_sent_to": "確認リンクを送信しました",
+  "verification_instructions": "メール内のリンクをクリックしてアカウントを確認してください。リンクの有効期限は24時間です。ログインする前にメールアドレスを確認する必要があります。",
+  "verify_step_1": "AxionTradeからのメールを開く",
+  "verify_step_2": "「メールアドレスを確認する」ボタンをクリック",
+  "verify_step_3": "ここに戻ってログインし、取引を開始する",
+  "check_spam_folder": "メールが見つかりませんか？迷惑メールフォルダを確認してください。",
+  "go_to_sign_in": "サインインへ",
+
   "passwords_match": "✓ パスワードが一致します",
   "passwords_do_not_match_indicator": "✗ パスワードが一致しません"
 }

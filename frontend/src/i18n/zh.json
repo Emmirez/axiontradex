@@ -2320,6 +2320,17 @@
   "got_it": "知道了",
   "install_address_bar": "要安装：在浏览器的地址栏中寻找安装图标，或使用 Chrome/Edge。",
 
+  "bitcoin_network": "比特币",
+  "bitcoin_gold": "黄金",
+  "trading_charts": "图表",
+  "verification_sent_to": "我们已将验证链接发送至",
+  "verification_instructions": "点击邮件中的链接以验证您的账户。该链接将在 24 小时后失效。您必须先验证您的电子邮件才能登录。",
+  "verify_step_1": "打开来自 AxionTrade 的邮件",
+  "verify_step_2": "点击“验证我的电子邮件地址”按钮",
+  "verify_step_3": "返回此处并登录以开始交易",
+  "check_spam_folder": "找不到邮件？请检查您的垃圾邮件文件夹。",
+  "go_to_sign_in": "前往登录",
+
   "passwords_match": "✓ 密码匹配",
   "passwords_do_not_match_indicator": "✗ 密码不匹配"
 }

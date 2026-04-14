@@ -26,7 +26,7 @@ export function AuthHeader() {
           <TrendingUp style={{ width: 18, height: 18, color: '#020617' }} />
         </div>
         <span style={{ fontFamily: '"Playfair Display",serif', fontWeight: 700, fontSize: '1.15rem', color: darkMode ? '#f1f5f9' : '#0f172a' }}>
-          Axion<span className="gold-text">Trade</span>
+          Axion<span className="gold-text">Trade</span><span style={{ color: darkMode ? "#ffffff" : "#0f172a" }}>X</span>
         </span>
       </Link>
 
@@ -71,7 +71,7 @@ export function AuthHeader() {
   )
 }
 
-// ── Auth Footer — ALWAYS DARK (same as landing footer) ────────
+//  Auth Footer — ALWAYS DARK (same as landing footer) ─
 export function AuthFooter() {
   const year = new Date().getFullYear()
 

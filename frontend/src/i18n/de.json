@@ -2319,6 +2319,17 @@
   "ios_step_3": "Wählen Sie <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Zum Startbildschirm\"</span> und tippen Sie dann auf <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Hinzufügen\"</span>",
   "got_it": "Verstanden",
   "install_address_bar": "Zur Installation: Suchen Sie das Installationssymbol in der Adressleiste Ihres Browsers oder verwenden Sie Chrome/Edge.",
+
+  "bitcoin_network": "Bitcoin",
+  "bitcoin_gold": "Gold",
+  "trading_charts": "Diagramme",
+  "verification_sent_to": "Wir haben einen Bestätigungslink gesendet an",
+  "verification_instructions": "Klicken Sie auf den Link in der E-Mail, um Ihr Konto zu bestätigen. Der Link verfällt nach 24 Stunden. Sie müssen Ihre E-Mail bestätigen, bevor Sie sich anmelden können.",
+  "verify_step_1": "Öffnen Sie die E-Mail von AxionTrade",
+  "verify_step_2": "Klicken Sie auf die Schaltfläche 'Meine E-Mail-Adresse bestätigen'",
+  "verify_step_3": "Kehren Sie hierher zurück und melden Sie sich an, um mit dem Handel zu beginnen",
+  "check_spam_folder": "E-Mail nicht gefunden? Überprüfen Sie Ihren Spam- oder Junk-Ordner.",
+  "go_to_sign_in": "Zur Anmeldung",
  
 
   "passwords_match": "✓ Passwörter stimmen überein",

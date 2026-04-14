@@ -2320,6 +2320,17 @@
   "got_it": "Anlaşıldı",
   "install_address_bar": "Yüklemek için: tarayıcınızın adres çubuğundaki yükleme simgesini arayın veya Chrome/Edge kullanın.",
 
+  "bitcoin_network": "bitcoin",
+  "bitcoin_gold": "altın",
+  "trading_charts": "grafikler",
+  "verification_sent_to": "Doğrulama bağlantısını şu adrese gönderdik",
+  "verification_instructions": "Hesabınızı doğrulamak için e-postadaki bağlantıya tıklayın. Bağlantının süresi 24 saat içinde dolar. Oturum açabilmeniz için e-postanızı doğrulamanız gerekir.",
+  "verify_step_1": "AxionTrade'den gelen e-postayı açın",
+  "verify_step_2": "'E-posta Adresimi Doğrula' düğmesine tıklayın",
+  "verify_step_3": "Buraya dönün ve işlem yapmaya başlamak için oturum açın",
+  "check_spam_folder": "E-postayı bulamıyor musunuz? Spam veya gereksiz e-posta klasörünüzü kontrol edin.",
+  "go_to_sign_in": "Oturum Açmaya Git",
+
   "passwords_match": "✓ Şifreler eşleşiyor",
   "passwords_do_not_match_indicator": "✗ Şifreler eşleşmiyor"
 }

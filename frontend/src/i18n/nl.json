@@ -2320,6 +2320,17 @@
   "got_it": "Begrepen",
   "install_address_bar": "Om te installeren: zoek het installatiepictogram in de adresbalk van uw browser of gebruik Chrome/Edge.",
 
+  "bitcoin_network": "bitcoin",
+  "bitcoin_gold": "goud",
+  "trading_charts": "grafieken",
+  "verification_sent_to": "We hebben een verificatielink gestuurd naar",
+  "verification_instructions": "Klik op de link in de e-mail om uw account te verifiëren. De link verloopt over 24 uur. U moet uw e-mail verifiëren voordat u kunt inloggen.",
+  "verify_step_1": "Open de e-mail van AxionTrade",
+  "verify_step_2": "Klik op de knop 'Mijn e-mailadres verifiëren'",
+  "verify_step_3": "Keer hier terug en log in om te beginnen met handelen",
+  "check_spam_folder": "Kunt u de e-mail niet vinden? Controleer uw spam- of ongewenste map.",
+  "go_to_sign_in": "Ga naar Inloggen",
+
   "passwords_match": "✓ Wachtwoorden komen overeen",
   "passwords_do_not_match_indicator": "✗ Wachtwoorden komen niet overeen"
 }
