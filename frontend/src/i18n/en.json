@@ -2305,7 +2305,7 @@
 
   "available_on_subtitle": "Multi-Platform",
   "available_on_title": "Available On All Platforms",
-  "available_on_desc": "Trade anywhere — install AxionTrade on your device for the full native experience",
+  "available_on_desc": "Trade anywhere — install AxionTradeX on your device for the full native experience",
   "platform_web": "Web",
   "platform_web_desc": "Access via browser",
   "platform_windows": "Windows",
@@ -2318,7 +2318,7 @@
   "badge_install": "Install",
   "badge_add": "Add",
   "ios_installation": "iOS Installation",
-  "ios_step_1": "Open AxionTrade in <span style=\"color:#f59e0b\" class=\"font-semibold\">Safari</span> on your iPhone or iPad",
+  "ios_step_1": "Open AxionTradeX in <span style=\"color:#f59e0b\" class=\"font-semibold\">Safari</span> on your iPhone or iPad",
   "ios_step_2": "Tap the <span style=\"color:#f59e0b\" class=\"font-semibold\">Share button</span> at the bottom of your browser",
   "ios_step_3": "Select <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Add to Home Screen\"</span> then tap <span style=\"color:#f59e0b\" class=\"font-semibold\">\"Add\"</span>",
   "got_it": "Got it",

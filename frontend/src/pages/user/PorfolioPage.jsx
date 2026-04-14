@@ -476,7 +476,7 @@ export default function PortfolioPage() {
     try {
       const [txRes, tradeRes] = await Promise.all([
         api.get("/users/transactions?limit=50"),
-        api.get("/trades/all-history?limit=50"), // merged endpoint
+        api.get("/trades/all-history?limit=50"), 
       ]);
       setTransactions(txRes.data?.data || []);
       setTrades(tradeRes.data?.data?.trades || []);
