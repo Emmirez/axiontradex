@@ -2,16 +2,8 @@ import { checkLiquidations } from "../controllers/tradeController.js";
 
 let _cache = null;
 let _expiry = 0;
-const TTL = 60_000; // 👈 increase to 60s — reduces CoinGecko hammering
+const TTL = 60_000;
 
-const BINANCE_SYMBOLS = {
-  BTC: "BTCUSDT",
-  ETH: "ETHUSDT",
-  SOL: "SOLUSDT",
-  BNB: "BNBUSDT",
-};
-
-// Map CoinGecko coin IDs to trading symbols
 const SYMBOL_MAP = {
   bitcoin: "BTCUSDT",
   ethereum: "ETHUSDT",
@@ -29,20 +21,23 @@ const SYMBOL_MAP = {
   sui: "SUIUSDT",
 };
 
+const CG_HEADERS = {
+  Accept: "application/json",
+  "x-cg-demo-api-key": process.env.COINGECKO_API_KEY, 
+};
+
 async function fetchFresh() {
-  // Try CoinGecko directly — skip Binance since it's geo-blocked
   try {
     const res = await fetch(
       "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,binancecoin,ripple,cardano,polkadot,dogecoin,avalanche-2,chainlink,tether,matic-network,near,sui&vs_currencies=usd",
       {
-        headers: { Accept: "application/json" },
+        headers: CG_HEADERS,
         signal: AbortSignal.timeout(8000),
       },
     );
     if (!res.ok) throw new Error(`CoinGecko ${res.status}`);
     const cg = await res.json();
-    if (!cg?.bitcoin?.usd)
-      throw new Error("CoinGecko returned incomplete data");
+    if (!cg?.bitcoin?.usd) throw new Error("CoinGecko returned incomplete data");
 
     Object.entries(cg).forEach(([coinId, data]) => {
       const symbol = SYMBOL_MAP[coinId];
@@ -82,11 +77,7 @@ export async function refreshRateCache() {
     console.log("[rateCache] Refreshed successfully");
     return rates;
   } catch (err) {
-    console.error(
-      "[rateCache] Refresh failed — keeping stale cache:",
-      err.message,
-    );
-    // Return stale cache instead of undefined
+    console.error("[rateCache] Refresh failed — keeping stale cache:", err.message);
     return _cache || null;
   }
 }
@@ -94,11 +85,9 @@ export async function refreshRateCache() {
 export async function getLiveRates() {
   if (_cache && Date.now() < _expiry) return _cache;
   const fresh = await refreshRateCache();
-  // Always return something — fall back to stale if refresh failed
   return fresh || _cache || null;
 }
 
-
 export function getCachedPrices() {
-  return _cache; 
+  return _cache;
 }

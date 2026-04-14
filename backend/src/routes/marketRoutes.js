@@ -44,19 +44,18 @@ const MOVER_MAP = {
 };
 
 //  CoinGecko fetch with retry 
-
 async function cgFetch(path, retries = 2) {
   for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(`https://api.coingecko.com/api/v3${path}`, {
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          "x-cg-demo-api-key": process.env.COINGECKO_API_KEY, 
+        },
         signal: AbortSignal.timeout(8000),
       });
       if (res.ok) return res.json();
-      if (res.status === 429) {
-        // Don't retry 429 in background — just give up and use stale cache
-        throw new Error(`CoinGecko 429 rate limited`);
-      }
+      if (res.status === 429) throw new Error(`CoinGecko 429 rate limited`);
       throw new Error(`CoinGecko ${res.status}`);
     } catch (err) {
       if (i === retries - 1) throw err;
