@@ -716,6 +716,7 @@ export default function Register() {
   const stepLabelClr = darkMode ? "#334155" : "#94a3b8";
 
   // Success screen
+  // Success screen
   if (done)
     return (
       <div
@@ -737,23 +738,25 @@ export default function Register() {
             padding: 24,
           }}
         >
-          <div style={{ textAlign: "center", maxWidth: 400 }}>
+          <div style={{ textAlign: "center", maxWidth: 440 }}>
+            {/* Icon */}
             <div
               style={{
                 width: 80,
                 height: 80,
                 borderRadius: "50%",
                 background: "rgba(245,158,11,0.15)",
+                border: "2px solid rgba(245,158,11,0.3)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 margin: "0 auto 24px",
               }}
             >
-              <CheckCircle
-                style={{ width: 40, height: 40, color: "#f59e0b" }}
-              />
+              <Mail style={{ width: 36, height: 36, color: "#f59e0b" }} />
             </div>
+
+            {/* Title */}
             <h2
               style={{
                 fontFamily: '"Playfair Display",serif',
@@ -763,20 +766,119 @@ export default function Register() {
                 marginBottom: 10,
               }}
             >
-              {t("welcome_to_axiontrade")}
+              {t("check_your_email")}
             </h2>
+
+            {/* Email sent to */}
+            <div
+              style={{
+                background: "rgba(245,158,11,0.06)",
+                border: "1px solid rgba(245,158,11,0.2)",
+                borderRadius: 14,
+                padding: "14px 20px",
+                margin: "16px 0 24px",
+              }}
+            >
+              <p
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "0.85rem",
+                  marginBottom: 6,
+                }}
+              >
+                {t("verification_sent_to")}
+              </p>
+              <p
+                style={{ color: "#f59e0b", fontWeight: 700, fontSize: "1rem" }}
+              >
+                {form.email}
+              </p>
+            </div>
+
+            {/* Instructions */}
             <p
               style={{
                 color: subClr,
-                fontSize: "0.9rem",
-                marginBottom: 32,
-                lineHeight: 1.6,
+                fontSize: "0.875rem",
+                lineHeight: 1.8,
+                marginBottom: 28,
               }}
             >
-              {t("account_created_success")}
-              <br />
-              {t("sign_in_to_start_trading")}
+              {t("verification_instructions")}
             </p>
+
+            {/* Steps */}
+            <div
+              style={{
+                background: darkMode
+                  ? "rgba(15,23,42,0.6)"
+                  : "rgba(248,250,252,0.9)",
+                border: "1px solid rgba(245,158,11,0.12)",
+                borderRadius: 14,
+                padding: "16px 20px",
+                marginBottom: 28,
+                textAlign: "left",
+              }}
+            >
+              {[t("verify_step_1"), t("verify_step_2"), t("verify_step_3")].map(
+                (step, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                      marginBottom: i < 2 ? 12 : 0,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: "50%",
+                        background: "rgba(245,158,11,0.15)",
+                        border: "1px solid rgba(245,158,11,0.3)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.65rem",
+                          fontWeight: 700,
+                          color: "#f59e0b",
+                        }}
+                      >
+                        {i + 1}
+                      </span>
+                    </div>
+                    <span
+                      style={{
+                        color: darkMode ? "#94a3b8" : "#64748b",
+                        fontSize: "0.82rem",
+                      }}
+                    >
+                      {step}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
+
+            {/* Spam notice */}
+            <p
+              style={{
+                color: "#475569",
+                fontSize: "0.75rem",
+                marginBottom: 24,
+              }}
+            >
+              {t("check_spam_folder")}
+            </p>
+
+            {/* Sign in button */}
             <Link
               to="/login"
               className="gold-btn"
@@ -790,7 +892,7 @@ export default function Register() {
                 fontSize: "0.95rem",
               }}
             >
-              {t("sign_in_now")}{" "}
+              {t("go_to_sign_in")}{" "}
               <ArrowRight style={{ width: 16, height: 16 }} />
             </Link>
           </div>
@@ -1217,7 +1319,8 @@ export default function Register() {
                       gap: 8,
                     }}
                   >
-                    <ArrowLeft style={{ width: 15, height: 15 }} /> {t("previous")}
+                    <ArrowLeft style={{ width: 15, height: 15 }} />{" "}
+                    {t("previous")}
                   </button>
                 )}
                 <button

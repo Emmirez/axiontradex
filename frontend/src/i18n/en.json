@@ -613,7 +613,6 @@
   "buy_order_executed": "↑ Buy Order Executed",
   "sell_order_executed": "↓ Sell Order Executed",
   "processing": "Processing...",
-  
 
   "_comment1": "Stock Page",
   "stocks_tab": "Stocks",
@@ -2258,7 +2257,7 @@
   "incorrect_address_warning": "Incorrect addresses result in permanent loss of funds",
   "cannot_be_reversed": "and cannot be reversed.",
   "confirm_withdrawal_btn": "Confirm Withdrawal",
-  "all_rights_reserved":"All rights reserved.",
+  "all_rights_reserved": "All rights reserved.",
 
   "lev": "Lev",
   "leverage": "Leverage",
@@ -2324,9 +2323,16 @@
   "got_it": "Got it",
   "install_address_bar": "To install: look for the install icon in your browser's address bar, or use Chrome/Edge.",
 
-  "bitcoin_network":"bitcoin",
-  "bitcoin_gold":"gold",
-  "trading_charts":"charts",
+  "bitcoin_network": "bitcoin",
+  "bitcoin_gold": "gold",
+  "trading_charts": "charts",
+  "verification_sent_to": "We sent a verification link to",
+  "verification_instructions": "Click the link in the email to verify your account. The link expires in 24 hours. You must verify your email before you can sign in.",
+  "verify_step_1": "Open the email from AxionTradeX",
+  "verify_step_2": "Click the 'Verify My Email Address' button",
+  "verify_step_3": "Return here and sign in to start trading",
+  "check_spam_folder": "Can't find the email? Check your spam or junk folder.",
+  "go_to_sign_in": "Go to Sign In",
 
   "passwords_match": "✓ Passwords match",
   "passwords_do_not_match_indicator": "✗ Passwords do not match"
