@@ -7,8 +7,8 @@ This project was built to deeply understand **trading systems, financial flows, 
 
 ## 🌐 Live Demo
 
-> Frontend: https://your-frontend-url
-> Backend API: https://your-backend-url
+> Frontend: https://axiontradex.com
+> Backend API: https://axiontradex.onrender.com/api
 
 
 ## ✨ Key Features
@@ -142,7 +142,7 @@ axiontrade/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/axiontrade.git
+git clone https://github.com/Emmirez/axiontradex.git
 cd axiontrade
 
 ### 2. Setup Backend
