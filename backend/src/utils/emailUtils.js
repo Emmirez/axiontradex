@@ -1,20 +1,15 @@
-import nodemailer from "nodemailer";
+import sgMail from "@sendgrid/mail";
 import logger from "../config/logger.js";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = async ({ to, subject, html }) => {
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM,
+    await sgMail.send({
+      from: {
+        email: process.env.EMAIL_FROM,
+        name: "AxionTrade",
+      },
       to,
       subject,
       html,
@@ -26,7 +21,7 @@ const sendEmail = async ({ to, subject, html }) => {
   }
 };
 
-// Logo: gold square with ↗ unicode arrow — pure text, zero images, works in every email client.
+
 // Gmail, Outlook, Apple Mail all render Unicode characters reliably.
 const LOGO_ROW = `
 <table cellpadding="0" cellspacing="0" border="0" role="presentation">
