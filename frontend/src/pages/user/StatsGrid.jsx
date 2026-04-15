@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Wallet,
   Shield,
@@ -12,7 +12,6 @@ import { useAuth } from "../../context/AuthContext";
 import api from "../../services/apiService";
 import { useTranslation } from "react-i18next";
 
-// Crypto assets that need price conversion
 const CRYPTO_ASSETS = [
   { key: "BTC", coingecko: "bitcoin" },
   { key: "ETH", coingecko: "ethereum" },
@@ -24,77 +23,105 @@ export default function StatsGrid() {
   const { darkMode } = useTheme();
   const { user } = useAuth();
   const { t } = useTranslation();
-  const [stats, setStats] = useState(null);
+
   const [loading, setLoading] = useState(true);
-  const [prices, setPrices] = useState({}); // { BTC: 84000, ETH: 1800, ... }
+  const [prices, setPrices] = useState({});
   const [priceLoading, setPriceLoading] = useState(true);
+
+  const [tradeStats, setTradeStats] = useState({
+    totalPnl: 0,
+    winRate: 0,
+    totalTrades: 0,
+    openTrades: 0,
+  });
 
   const cardBg = darkMode ? "rgba(15,23,42,0.9)" : "rgba(255,255,255,0.98)";
   const mutedClr = darkMode ? "#64748b" : "#94a3b8";
   const border = darkMode ? "rgba(245,158,11,0.15)" : "rgba(0,0,0,0.08)";
 
-  // Fetch dashboard stats
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await api.get("/users/dashboard");
-        setStats(res.data?.data || res.data || null);
-      } catch {
-        setStats(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
+  const loadTrades = useCallback(async () => {
+    try {
+      const res = await api.get("/trades/all-history?limit=500");
+      const trades = res.data?.data?.trades || [];
+
+      let totalPnl = 0;
+      let winningTrades = 0;
+      let openTrades = 0;
+
+      trades.forEach((trade) => {
+        const pnl = trade.profit ?? trade.pnl ?? 0;
+        totalPnl += pnl;
+        if (pnl > 0) winningTrades++;
+        if (trade.status === "open" || trade.status === "filled") openTrades++;
+      });
+
+      const totalTrades = trades.length;
+      const winRate =
+        totalTrades > 0
+          ? parseFloat(((winningTrades / totalTrades) * 100).toFixed(1))
+          : 0;
+
+      setTradeStats({ totalPnl, winRate, totalTrades, openTrades });
+    } catch {
+      // keep previous values on error
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   // Fetch crypto prices
-  useEffect(() => {
-    const fetchPrices = async () => {
-      setPriceLoading(true);
-      try {
-        const res = await api.get("/markets/prices");
-        const data = res.data?.data || res.data;
-
-        const p = {};
-        CRYPTO_ASSETS.forEach((a) => {
-          if (data[a.coingecko]) {
-            p[a.key] = data[a.coingecko].usd;
-          }
-        });
-        setPrices(p);
-      } catch {
-        // silently fail — totalBalance will show stablecoins only if prices unavailable
-      } finally {
-        setPriceLoading(false);
-      }
-    };
-    fetchPrices();
+  const loadPrices = useCallback(async () => {
+    setPriceLoading(true);
+    try {
+      const res = await api.get("/markets/prices");
+      const data = res.data?.data || res.data;
+      const p = {};
+      CRYPTO_ASSETS.forEach((a) => {
+        if (data[a.coingecko]) p[a.key] = data[a.coingecko].usd;
+      });
+      setPrices(p);
+    } catch {
+      // silently fail
+    } finally {
+      setPriceLoading(false);
+    }
   }, []);
 
-  // Total portfolio in USD — stablecoins + crypto converted at market price
+  useEffect(() => {
+    loadTrades();
+    loadPrices();
+
+    const tradeInterval = setInterval(loadTrades, 30_000);
+    const priceInterval = setInterval(loadPrices, 60_000);
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        loadTrades();
+        loadPrices();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      clearInterval(tradeInterval);
+      clearInterval(priceInterval);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [loadTrades, loadPrices]);
+
+  // Total portfolio balance
   const totalBalance = (() => {
     const b = user?.wallet?.balances;
     if (!b) return 0;
-
-    // Stablecoins (1:1 with USD)
     const stables = (b.USD || 0) + (b.USDT || 0);
-
-    // Crypto converted to USD using live prices
     const cryptoUSD = CRYPTO_ASSETS.reduce((sum, a) => {
-      const amount = b[a.key] || 0;
-      const price = prices[a.key] || 0; // 0 if price not loaded yet
-      return sum + amount * price;
+      return sum + (b[a.key] || 0) * (prices[a.key] || 0);
     }, 0);
-
     return stables + cryptoUSD;
   })();
 
   const locked = user?.wallet?.locked || 0;
-  const totalPnl = stats?.totalPnl ?? 0;
-  const winRate = stats?.winRate ?? 0;
-  const totalTrades = stats?.totalTrades ?? 0;
-  const openTrades = stats?.openPositions ?? stats?.openTrades ?? 0;
+  const { totalPnl, winRate, totalTrades, openTrades } = tradeStats;
   const isPnlUp = totalPnl >= 0;
 
   const balanceLoading =
@@ -119,27 +146,28 @@ export default function StatsGrid() {
     },
     {
       labelKey: "total_pnl",
-      value: `${isPnlUp ? "+" : ""}$${Math.abs(totalPnl).toFixed(2)}`,
+      value: `${totalPnl >= 0 ? "+" : "-"}$${Math.abs(totalPnl).toFixed(2)}`,
       color: isPnlUp ? "#34d399" : "#f87171",
       icon: TrendingUp,
+      isLoading: loading,
     },
     {
       labelKey: "win_rate",
-      value: loading ? "—" : `${winRate}%`,
+      value: `${winRate}%`,
       color: "#60a5fa",
       icon: BarChart3,
       isLoading: loading,
     },
     {
       labelKey: "total_trades",
-      value: loading ? "—" : totalTrades,
+      value: totalTrades,
       color: "#a78bfa",
       icon: Activity,
       isLoading: loading,
     },
     {
       labelKey: "open_positions",
-      value: loading ? "—" : openTrades,
+      value: openTrades,
       color: "#f87171",
       icon: RefreshCw,
       isLoading: loading,

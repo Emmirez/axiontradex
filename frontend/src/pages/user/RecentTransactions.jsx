@@ -186,7 +186,8 @@ export default function RecentTransactions() {
         transactions.map((txn, i) => {
           const Icon = txIcon(txn.type);
           const color = txColor(txn.type);
-          const isDebit = txn.type === "withdrawal";
+          const debitTypes = ["withdrawal", "fee", "loss"];
+          const isDebit = debitTypes.includes(txn.type);
           return (
             <div
               key={txn._id}
