@@ -240,5 +240,4 @@ This project goes beyond a simple UI — it demonstrates:
 ---
 
 ## 📄 License
-
-This project is for educational and portfolio purposes.
+This project is proprietary. All rights reserved © 2026 DevClosure.
